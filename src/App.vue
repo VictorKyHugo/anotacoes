@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="container">
     <Notes />
   </div>
 </template>
 
 <script>
 
-import '../src/styles/global.css'
+import '../src/styles/utilities/global.scss'
 import Notes from '../src/pages/Notes.vue'
 
 export default {
@@ -16,3 +16,9 @@ export default {
 
 };
 </script>
+
+<style scoped>
+  container{
+    background-color: #F8F9FA;
+  }
+</style>
