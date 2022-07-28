@@ -1,7 +1,47 @@
+@import '../utilities/variables';
+
 .notes{
-    height: 100vh;
+    min-height: 100vh;
+    width: 80vw;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
+    
+    background-color: $white;
+    position: relative;
+
+    &__note{
+
+        &:first-child{
+            margin-top: 1rem;
+        }
+
+        &:last-child{
+            padding-bottom: 2rem;
+        }
+
+        margin-bottom: 1rem;
+    }
+
+    &__paginator{
+        position: absolute;
+        bottom: 1rem;
+
+        align-self: center;
+
+        .p-paginator-element{
+            border: none !important;
+        }
+
+        .p-paginator-first,
+        .p-paginator-prev,
+        .p-paginator-next,
+        .p-paginator-last{
+            color: $grey !important;
+        }
+
+        .p-paginator-page{
+            border-radius: 100% !important;
+            margin: 0 2px !important;
+        }
+    }
 }

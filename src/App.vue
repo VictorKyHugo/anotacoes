@@ -18,7 +18,11 @@ export default {
 </script>
 
 <style scoped>
-  container{
+  .container{
     background-color: #F8F9FA;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>

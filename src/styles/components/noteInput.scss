@@ -1,0 +1,75 @@
+@import '../utilities/variables';
+
+.note-input{
+
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 3rem;
+
+    &__header{
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    
+        & .p-inputtext{
+            height: 5.5rem !important;
+            width: 100%;
+            margin: 0 2rem;
+        }
+
+        &__picture{
+            width: 50px;
+            margin-left: 1.5rem;
+        }
+    }
+
+    &__footer{
+
+        align-self: flex-end;
+        display: flex;
+        align-items: center;
+
+        margin: 1rem 0 2.5rem;
+
+        &__icons{
+            & .pi{
+                margin: 0 5px;
+                font-size: 20px;
+
+                color: $light-grey;
+                cursor: pointer; 
+            }
+
+            & .pi-thumbs-up{
+                &:hover{
+                    color: $green;
+                    opacity: 80%;
+                }
+
+                &--active{
+                    color: $green;
+                }
+            }
+
+            & .pi-thumbs-down{
+                &:hover{
+                    color: $red;
+                    opacity: 80%;
+                }
+
+                &--active{
+                    color: $red;
+                }
+            }
+        }
+
+        & .p-button{
+            width: 142px;
+            height: 42px;
+            margin: 0 2rem 0 1rem;
+        }
+    }
+
+}
