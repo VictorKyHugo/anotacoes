@@ -48,9 +48,35 @@
 
             & .pi-pencil{
                 left: 36%;
+                cursor: pointer;
+
+                &:hover{
+                    opacity: 80%;
+                }
+
             }
 
             & .pi-trash{
+                right: 0;
+                cursor: pointer;
+
+                &:hover{
+                    color: $red;
+                    opacity: 80%;
+                }
+            }
+
+            & .pi-check{
+                left: 36%;
+                cursor: pointer;
+
+                &:hover{
+                    color: $green;
+                    opacity: 80%;
+                }
+            }
+
+            & .pi-times{
                 right: 0;
                 cursor: pointer;
 
@@ -81,6 +107,11 @@
             margin-top: 0.5rem;
             border: 1px solid $grey;
             border-radius: 100%;
+        }
+
+        & .p-inputtext{
+            margin-top: 1.6rem;
+            flex: 1;
         }
     }
 

@@ -2,7 +2,11 @@
   <div class="notes">
     <NoteInput @new-note="addNewNote($event)" />
     <div class="notes__note"  v-for="note in notesToRender" :key="note.key">
-      <Card :data="note" @delete-card="deleteNote($event)"/>
+      <Card 
+        :data="note" 
+        @delete-card="deleteNote($event)"
+        @edit-card="editNote($event)"
+      />
     </div>
     <Paginator 
       class="notes__paginator" 
@@ -80,8 +84,13 @@ export default {
       this.getCurrentPageData({ first: this.currentPageFirstItemIndex })
     },
 
+    editNote({key, text}){
+      const noteIndex = this.notes.findIndex(note => note.key === key)
+      this.notes[noteIndex].text = `“${text}”`
+    },
+
     addNewNote(data){
-      const newNoteKey = this.notes[this.notes.length - 1].key + 1
+      const newNoteKey =  this.notes.length ? this.notes[this.notes.length - 1].key + 1 : 0
 
       const newNote = {
           text: data.text,

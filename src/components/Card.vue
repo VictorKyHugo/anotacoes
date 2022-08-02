@@ -2,21 +2,30 @@
     <Card class="card">
       <template #header>
         <span class="p-card-header__name">{{ data.userName }}</span>
-        <div class="p-card-header__icons">
+
+        <div v-if="!isEditing" class="p-card-header__icons">
           <i :class="['pi', {
             'pi-thumbs-up pi-thumbs-up--active': data.evaluation === 'liked',
             'pi-thumbs-down pi-thumbs-down--active': data.evaluation === 'desliked',
             'pi-thumbs-up': data.evaluation === 'neutral',
             }]">
           </i>
-          <i class="pi pi-pencil"></i>
+          <i class="pi pi-pencil" @click="editCard" ></i>
           <i class="pi pi-trash" @click="deleteCard(data.key)"></i>
         </div>
+
+        <div v-if="isEditing" class="p-card-header__icons">
+          <i class="pi pi-check" @click="sendEditedCard(data.key)"></i>
+          <i class="pi pi-times" @click="cancelEditing"></i>
+        </div>
+
       </template>
       <template #content>
-        <img class="p-card-content__picture" src="../assets/profilePicture.png" alt=""/>       
-        <p class="p-card-content__note"> {{ data.text }} </p>
+          <img class="p-card-content__picture" src="../assets/profilePicture.png" alt=""/>       
+          <p v-if="!isEditing" class="p-card-content__note"> {{ data.text }} </p>
+          <InputText v-if="isEditing" type="text" v-model="value" />
       </template>
+
       <template #footer>
         <div class="p-card-footer__line" />
         <div class="p-card-footer__info">
@@ -30,10 +39,12 @@
 <script>
 import '../styles/components/card.scss'
 import Card from 'primevue/card';
+import InputText from 'primevue/inputtext';
 
 export default {
   components: {
-    Card
+    Card,
+    InputText
   },
   props: {
     data: {
@@ -49,9 +60,33 @@ export default {
     }
   },
 
+  data(){
+    return {
+      isEditing: false,
+      value: ''
+    }
+  },
+
+  mounted(){
+    this.value = this.data.text.slice(1, -1)
+  },  
+
   methods: {
     deleteCard(key){
       this.$emit('delete-card', key)
+    },
+
+    editCard(){
+      this.isEditing = true
+    },
+
+    sendEditedCard(key){
+      this.$emit('edit-card', {key, text: this.value})
+      this.isEditing = false
+    },
+
+    cancelEditing(){
+      this.isEditing = false
     }
   }
 
